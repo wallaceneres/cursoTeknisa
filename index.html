@@ -8,17 +8,29 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"></style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h3>Validador de CPF</h3>
+    <div class="header">
+        <div class="container">
+            <img src="img/logo.png" alt="Logo" class="logo">
+            <h1>Validador de CPF</h1>
+        </div>     
+    </div>
+    <div class="body">
+        <div class="container">
+            <div class="validador">
+                <input type="text" id="cpfvalidador" placeholder="Insira o cpf" maxlength="14"></input>
+                <button id="btValidar" onclick="validaCPF()" class="button">Validar</button>
+                <div class="result" id="result"></div>
+            </div>
         </div>
-        <div class="body">
-            <input type="text" id="cpf" placeholder="Insira o cpf" maxlength="14"></input>
-            <button id="btValidar" onclick="validaCPF()">Validar</button>
-        </div>
-        <div class="footer">
-            <span id="resultado"></span>
-        </div>
+    </div>
+    <div class="footer">
+            <p>&copy; Wallace Neres</p>
+            <a href="https://www.linkedin.com/in/wallaceneres/" target="_blank">
+                <img src="img\LI-In-Bug.png" alt="Logo do LinkedIn" class="logosocialmedia">
+              </a>
+              <a href="https://github.com/wallaceneres" target="_blank">
+                <img src="img\github-mark-white.png" alt="Logo do GitHub" class="logosocialmedia">
+              </a>
     </div>
     
 </body>

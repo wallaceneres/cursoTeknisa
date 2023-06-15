@@ -1,6 +1,8 @@
+
+
 function validaCPF()
 {
-    const cpfFormatado = document.getElementById('cpf').value;
+    const cpfFormatado = document.getElementById('cpfvalidador').value;
 
     const cpf = limpaFormatacao(cpfFormatado);
 
@@ -47,10 +49,12 @@ function limpaFormatacao(cpf)
 function mostraResultado(texto, cor)
 {
 
-    const span = document.getElementById('resultado');
+    const span = document.getElementById('result');
 
-    span.innerHTML = texto;
-    span.style.color = cor;
+    result.innerHTML = texto;
+    result.classList.remove('red','green'); 
+    result.classList.add(cor); // Adiciona a classe correspondente
+    result.classList.add('visible'); // Adiciona a classe 'visible' para exibir a div
 
 }
 
