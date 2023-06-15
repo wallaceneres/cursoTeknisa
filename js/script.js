@@ -30,7 +30,7 @@ function validaCPF()
 
     if(!digito2)
     {
-        mostraResultado(`CPF inválido - ${cpfFormatado}`,'red');
+        mostraResultado(`CPF inválido2 - ${cpfFormatado}`,'red');
         return;
     }
 
@@ -77,9 +77,16 @@ function calcularDigitoVerificador(cpf,posicao)
         soma += multiplicador * Number(numero);
         multiplicador--;
     }
+    let restoDivisao = (soma * 10) % 11;
 
-    const restoDivisao = (soma * 10) % 11;
-    const digito = cpf.slice(8 + posicao, 9 + posicao)
+    //se o resto da divisao for igual a 10, o valor 0 deve ser considerado!
+    if (restoDivisao == 10){
+        restoDivisao = 0;
+    }
+
+    const digito = cpf.slice(8 + posicao, 9 + posicao);
+
+    console.log(restoDivisao);
 
     return restoDivisao == digito;
 
