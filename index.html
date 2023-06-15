@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CPF</title>
     <script src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css"></style>
 </head>
@@ -11,15 +11,24 @@
     <div class="header">
         <div class="container">
             <img src="img/logo.png" alt="Logo" class="logo">
-            <h1>Validador de CPF</h1>
+            <h1>Validador/Gerador de CPF</h1>
         </div>     
     </div>
     <div class="body">
         <div class="container">
             <div class="validador">
+                <p>Validador de CPF</p>
                 <input type="text" id="cpfvalidador" placeholder="Insira o cpf" maxlength="14"></input>
                 <button id="btValidar" onclick="validaCPF()" class="button">Validar</button>
                 <div class="result" id="result"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="validador">
+                <p>Gerador de CPF</p>
+                <button id="btGerar" onclick="gerarCPF()" class="button">Gerar</button>
+                <div class="cpfgerado" id="cpfgerado"></div>
             </div>
         </div>
     </div>

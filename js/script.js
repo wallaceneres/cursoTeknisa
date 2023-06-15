@@ -18,7 +18,7 @@ function validaCPF()
         return;
     }
 
-    const digito1 = calcularDigitoVerificador(cpf, 1);
+    const digito1 = calcularDigitoVerificador(cpf, 1, 'calcula');
 
     if(!digito1)
     {
@@ -26,11 +26,11 @@ function validaCPF()
         return;
     }
 
-    const digito2 = calcularDigitoVerificador(cpf, 2);
+    const digito2 = calcularDigitoVerificador(cpf, 2, 'calcula');
 
     if(!digito2)
     {
-        mostraResultado(`CPF inválido2 - ${cpfFormatado}`,'red');
+        mostraResultado(`CPF inválido - ${cpfFormatado}`,'red');
         return;
     }
 
@@ -49,12 +49,10 @@ function limpaFormatacao(cpf)
 function mostraResultado(texto, cor)
 {
 
-    const span = document.getElementById('result');
-
     result.innerHTML = texto;
     result.classList.remove('red','green'); 
-    result.classList.add(cor); // Adiciona a classe correspondente
-    result.classList.add('visible'); // Adiciona a classe 'visible' para exibir a div
+    result.classList.add(cor); 
+    result.classList.add('visible');
 
 }
 
@@ -65,7 +63,7 @@ function verificaDigitosRepetidos(cpf)
 
 }
 
-function calcularDigitoVerificador(cpf,posicao)
+function calcularDigitoVerificador(cpf,posicao,operacao)
 {
 
     const sequencia = cpf.slice(0, 8 + posicao).split('');
@@ -77,6 +75,7 @@ function calcularDigitoVerificador(cpf,posicao)
         soma += multiplicador * Number(numero);
         multiplicador--;
     }
+
     let restoDivisao = (soma * 10) % 11;
 
     //se o resto da divisao for igual a 10, o valor 0 deve ser considerado!
@@ -86,9 +85,35 @@ function calcularDigitoVerificador(cpf,posicao)
 
     const digito = cpf.slice(8 + posicao, 9 + posicao);
 
-    console.log(restoDivisao);
+    switch (operacao){
 
-    return restoDivisao == digito;
+        case 'calcula': return restoDivisao == digito;
 
+        case 'gera': return restoDivisao;
+
+    }
 
 }
+
+function gerarCPF() {
+    let cpf = "";
+    
+    //gera 9 numeros aleatorios
+    for (let i = 0; i < 9; i++) {
+      cpf += Math.floor(Math.random() * 10);
+    }
+  
+    const digitogerado1 = calcularDigitoVerificador(cpf, 1, 'gera');
+    cpf += digitogerado1;
+    
+    const digitogerado2 = calcularDigitoVerificador(cpf, 2, 'gera');
+    cpf += digitogerado2;
+
+    //adiciona mascara no cpf 999.999.999-99
+    cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+
+    const div = document.getElementById('cpfgerado');
+
+    div.innerHTML = cpf;
+  }
+
